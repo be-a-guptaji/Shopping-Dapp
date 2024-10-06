@@ -4,6 +4,7 @@ import { Cart } from "./pages/Cart";
 import { Navbar } from "./components/Navbar";
 import { Routes, Route } from "react-router-dom";
 import Wallet from "./pages/Wallet";
+import CheckOut from "./pages/CheckOut";
 
 function App() {
   const url = "https://fakestoreapi.com/products";
@@ -30,6 +31,7 @@ function App() {
           <Route path="/" element={<Home data={data} loading={loading} />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/wallet" element={<Wallet />} />
+          <Route path="/checkout" element={<CheckOut />} />
         </Routes>
       </Navbar>
     </>
