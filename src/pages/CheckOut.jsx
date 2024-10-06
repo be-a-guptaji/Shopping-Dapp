@@ -24,8 +24,8 @@ const CheckOut = () => {
 
   useEffect(() => {
     settotalAmount(cart.reduce((acc, curr) => acc + curr.price, 0));
-    setAmount(cart.reduce((acc, curr) => acc + curr.price, 0));
-  }, [cart]);
+    setAmount(Math.round(totalAmount * 100 * 0.007) / 100);
+  }, [cart, totalAmount]);
 
   async function sendTokens(to) {
     // Validate inputs
@@ -104,7 +104,7 @@ const CheckOut = () => {
           />
           <button
             className="rounded-lg h-12 px-2 bg-[#512da8] disabled:bg-gray-700"
-            onClick={() => sendTokens(toPublicKey, amount)}
+            onClick={() => sendTokens(toPublicKey)}
             disabled={!toPublicKey || !amount || loading}
           >
             {loading ? "Sending..." : "Send Solana"}

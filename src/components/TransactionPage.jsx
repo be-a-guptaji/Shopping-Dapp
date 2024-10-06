@@ -23,9 +23,10 @@ const TransactionPage = () => {
 
   useEffect(() => {
     settotalAmount(cart.reduce((acc, curr) => acc + curr.price, 0));
-  }, [cart]);
+    setAmount(Math.round(totalAmount * 100 * 0.007) / 100);
+  }, [cart, totalAmount]);
 
-  async function sendTokens(to, amount) {
+  async function sendTokens(to) {
     // Validate inputs
     try {
       const balanceInSOL = await connection.getBalance(
@@ -33,6 +34,7 @@ const TransactionPage = () => {
       );
       new PublicKey(to); // Validate the public key
       const parsedAmount = parseFloat(amount);
+      console.log(parsedAmount);
       if (isNaN(parsedAmount) || parsedAmount <= 0) {
         setStatusMessage("Please enter a valid amount.");
         return;
@@ -81,11 +83,6 @@ const TransactionPage = () => {
     setStatusMessage(""); // Clear previous status messages
   };
 
-  const handleAmount = (event) => {
-    setAmount(event.target.value);
-    setStatusMessage(""); // Clear previous status messages
-  };
-
   return (
     <>
       <h1 className="text-3xl font-semibold text-center my-8">
@@ -104,11 +101,10 @@ const TransactionPage = () => {
           value={Math.round(totalAmount * 100 * 0.0070) / 100}
           placeholder="Amount"
           className="border border-gray-600 rounded-lg h-10 px-4"
-          onChange={handleAmount}
         />
         <button
           className="rounded-lg h-12 px-2 bg-[#512da8] disabled:bg-gray-700"
-          onClick={() => sendTokens(toPublicKey, amount)}
+          onClick={() => sendTokens(toPublicKey)}
           disabled={!toPublicKey || !amount || loading}
         >
           {loading ? "Sending..." : "Send Solana"}
