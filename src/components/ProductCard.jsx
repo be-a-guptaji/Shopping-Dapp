@@ -25,13 +25,13 @@ export const ProductCard = ({ card }) => {
           {card.title}
         </p>
       </div>
+      <div className="h-[200px]">
+        <img src={card.image} className="h-full w-full" />
+      </div>
       <div>
         <p className="w-40 text-gray-400 font-normal text-[10px] text-left">
           {card.description.split(" ").slice(0, 10).join(" ") + "..."}
         </p>
-      </div>
-      <div className="h-[200px]">
-        <img src={card.image} className="h-full w-full" />
       </div>
       <div className="flex justify-between gap-12 items-center w-full mt-5">
         <div>
