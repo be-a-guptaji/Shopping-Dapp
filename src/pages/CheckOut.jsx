@@ -182,6 +182,7 @@ import { useState, useEffect } from "react";
 import { Buffer } from "buffer";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import {clear} from '../redux/Slices/CartSlice'
 // import { resetState } from "../redux/Slices/CartSlice"; // Uncomment this when implementing reset logic
 
 window.Buffer = Buffer;
@@ -197,7 +198,6 @@ const CheckOut = () => {
   const [statusMessage, setStatusMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const { cart } = useSelector((state) => state);
-
   useEffect(() => {
     getItem();
   }, [cart]);
@@ -262,7 +262,7 @@ const CheckOut = () => {
       const signature = await wallet.sendTransaction(transaction, connection);
       console.log(`Transaction successful! Signature: ${signature}`);
       setStatusMessage(`Transaction successful! Signature: ${signature}`);
-
+     console.log(dispatch(clear()))
       await fetch("http://localhost:8080/payment", {
         method: "POST",
         headers: {
