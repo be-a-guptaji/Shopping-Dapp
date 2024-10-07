@@ -1,17 +1,23 @@
 const mongoose = require("mongoose");
 
-const paymentSchema = new mongoose.Schema({
-  sender: {
-    type: String,
+const paymentSchema = new mongoose.Schema(
+  {
+    sender: {
+      type: String,
+    },
+    receiver: {
+      type: String,
+    },
+    signature: {
+      type: String,
+    },
+    priceInSol: {
+      type: Number,
+    },
   },
-  receiver: {
-    type: String,
-  },
-  priceInSol: {
-    type: Number,
+  {
+    timestamps: true,
   }
-}, {
-  timestamps: true
-});
+);
 const Payment = mongoose.model("Payment", paymentSchema);
 module.exports = Payment;
