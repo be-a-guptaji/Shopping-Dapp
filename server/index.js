@@ -65,6 +65,19 @@ app.post("/orders", async (req, res) => {
   }
 });
 
+app.post("/placedOrder", async (req, res) => {
+  try {
+    // Create and save the payment document
+    const placedOrders = await Order.find({ user: req.body.user });
+    console.log(placedOrders.products)   
+    // Return a success response
+    res.status(201).json(placedOrders);
+  } catch (err) {
+    console.error(err); // Log the error for debugging
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
+
 app.post("/cart", async (req, res) => {
   try {
     let orders=[]
