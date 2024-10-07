@@ -12,7 +12,11 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.0",
+<<<<<<< HEAD
     "mongoose": "^8.7.0",
     "nodemon": "^3.1.7"
+=======
+    "mongoose": "^8.7.0"
+>>>>>>> 78a2b34f950a5a75a2c3fa6d71b3291b2f3061e6
   }
 }

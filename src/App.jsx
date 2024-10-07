@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from 'axios';
 import { Home } from "./pages/Home";
 import { Cart } from "./pages/Cart";
 import { Navbar } from "./components/Navbar";
@@ -16,10 +17,14 @@ function App() {
     try {
       async function fetchData() {
         setLoading(true);
+<<<<<<< HEAD
         axios
           .get("http://localhost:8080")
           .then((newdata) => setData(newdata.data))
           .catch((err) => console.log(err));
+=======
+        axios.get('http://localhost:8080').then((newdata)=>setData(newdata.data)).catch((err)=>console.log(err))
+>>>>>>> 78a2b34f950a5a75a2c3fa6d71b3291b2f3061e6
         setLoading(false);
       }
       fetchData();
