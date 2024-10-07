@@ -6,7 +6,6 @@ import { Navbar } from "./components/Navbar";
 import { Routes, Route } from "react-router-dom";
 import Wallet from "./pages/Wallet";
 import CheckOut from "./pages/CheckOut";
-import axios from "axios";
 import Orders from "./pages/Orders";
 
 function App() {
@@ -17,14 +16,11 @@ function App() {
     try {
       async function fetchData() {
         setLoading(true);
-<<<<<<< HEAD
         axios
           .get("http://localhost:8080")
           .then((newdata) => setData(newdata.data))
           .catch((err) => console.log(err));
-=======
         axios.get('http://localhost:8080').then((newdata)=>setData(newdata.data)).catch((err)=>console.log(err))
->>>>>>> 78a2b34f950a5a75a2c3fa6d71b3291b2f3061e6
         setLoading(false);
       }
       fetchData();
