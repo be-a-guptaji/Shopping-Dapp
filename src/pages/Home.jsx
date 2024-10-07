@@ -184,7 +184,6 @@ export const Home = ({ data, loading }) => {
   const addToCart = (id) => {
     dispatch(add(id));
     toast.success("Item added to Cart");
-    console.log(cart);
   };
 
   const removeFromCart = (id) => {
