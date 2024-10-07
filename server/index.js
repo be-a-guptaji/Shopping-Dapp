@@ -34,12 +34,12 @@ app.get("/",async (req,res)=>{
 
 app.post("/payment", async (req, res) => {
   try {
-
+console.log(req.body);
     // Create and save the payment document
     const payment = await Payment.create(req.body);
 
     // Return a success response
-    res.status(201).json({ success: true, payment });
+    res.status(201).json({ success: true,payment});
   } catch (err) {
     console.error(err); // Log the error for debugging
     res.status(500).json({ success: false, error: err.message });
