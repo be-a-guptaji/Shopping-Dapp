@@ -15,7 +15,10 @@ window.Buffer = Buffer;
 const CheckOut = () => {
   const wallet = useWallet();
   const { connection } = useConnection();
-  const [toPublicKey, setToPublicKey] = useState("");
+  const [toPublicKey, setToPublicKey] = useState(
+    "jk2dLkNjZMQqaWnJDWM5BowPSoSGhUVRvqyhfJ44n1P"
+  );
+
   const [amount, setAmount] = useState("");
   const [statusMessage, setStatusMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -78,11 +81,6 @@ const CheckOut = () => {
     }
   }
 
-  const handleReceiver = (event) => {
-    setToPublicKey(event.target.value);
-    setStatusMessage(""); // Clear previous status messages
-  };
-
   return (
     <>
         <div className="flex flex-col gap-4 w-2/5 mx-auto border border-gray-600 rounded-lg p-4 mt-12 bg-slate-300">
@@ -92,8 +90,9 @@ const CheckOut = () => {
           <input
             type="text"
             placeholder="Receiver's Address"
-            className="border border-gray-600 rounded-lg h-10 px-4"
-            onChange={handleReceiver}
+          className="border border-gray-600 rounded-lg h-10 px-4"
+          readOnly
+          value={toPublicKey}
           />
           <input
             type="text"
