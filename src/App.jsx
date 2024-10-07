@@ -20,7 +20,7 @@ function App() {
           .get("http://localhost:8080")
           .then((newdata) => setData(newdata.data))
           .catch((err) => console.log(err));
-        axios.get('http://localhost:8080').then((newdata)=>setData(newdata.data)).catch((err)=>console.log(err))
+        // axios.get('http://localhost:8080').then((newdata)=>setData(newdata.data)).catch((err)=>console.log(err))
         setLoading(false);
       }
       fetchData();

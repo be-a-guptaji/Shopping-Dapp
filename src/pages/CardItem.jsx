@@ -75,12 +75,16 @@ import { MdOutlineDelete } from "react-icons/md";
 import { useDispatch } from "react-redux";
 import { remove } from "../redux/Slices/CartSlice";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
+
 export const CardItem = ({ item }) => {
+  console.log(item);
   const dispatch = useDispatch();
   const removeFromCart = () => {
     dispatch(remove(item.id));
     toast.error("Item removed");
   };
+
   return (
     <div className="flex ">
       <div className="flex gap-10 py-4 border-b border-gray-300">

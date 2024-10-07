@@ -66,7 +66,18 @@ app.post("/orders", async (req, res) => {
   }
 });
 
-app.get("/cart",(req,res)=>{
-
-})
+app.post("/cart", async (req, res) => {
+  try {
+    let orders=[]
+    for (let i = 0; i < req.body.length; i++) { 
+      const data = await Product.findOne({ _id:  req.body[i]  });
+      orders.push(data)
+    }
+    console.log(orders)
+    res.status(201).json({ orders });
+  } catch (err) {
+    console.error(err); // Log the error for debugging
+    res.status(500).json({ success: false, error: err.message });
+  }
+});
 
