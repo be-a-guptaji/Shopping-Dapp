@@ -198,6 +198,8 @@ const CheckOut = () => {
   const [statusMessage, setStatusMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const { cart } = useSelector((state) => state);
+  const [transactionHistory,setTransactionHistory] = useState([]);
+
   useEffect(() => {
     getItem();
   }, [cart]);
@@ -260,10 +262,11 @@ const CheckOut = () => {
       setLoading(true); // Set loading state
 
       const signature = await wallet.sendTransaction(transaction, connection);
-      console.log(`Transaction successful! Signature: ${signature}`);
+      // console.log(`Transaction successful! Signature: ${signature}`);
       setStatusMessage(`Transaction successful! Signature: ${signature}`);
-     console.log(dispatch(clear()))
-      await fetch("http://localhost:8080/payment", {
+      dispatch(clear());
+
+     const transactionDetails=  await fetch("http://localhost:8080/payment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -275,15 +278,15 @@ const CheckOut = () => {
           priceInSol: amount,
         }),
       });
-
-      await fetch("http://localhost:8080/orders", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ cart, sender: wallet.publicKey.toString() }),
-      });
-
+      const data1= await transactionDetails.json();
+      // await fetch("http://localhost:8080/orders", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify({ cart, sender: wallet.publicKey.toString() }),
+      // });
+      setTransactionHistory(data1.payment);
       // resetState(); // Uncomment to reset cart after successful payment
     } catch (error) {
       console.error("Transaction error:", error);
@@ -293,7 +296,7 @@ const CheckOut = () => {
     }
   };
 
-  return (
+  return (<div>
     <div className="flex flex-col gap-4 w-2/5 mx-auto border border-gray-600 rounded-lg p-4 mt-12 bg-slate-300">
       <h1 className="text-3xl font-semibold text-center mb-4 mt-2">
         Make Payment
@@ -319,6 +322,7 @@ const CheckOut = () => {
       >
         {loading ? "Sending..." : "Send Solana"}
       </button>
+
       {statusMessage && <p className="mt-2 text-center">{statusMessage}</p>}
       {!wallet.connected && (
         <Link
@@ -329,6 +333,21 @@ const CheckOut = () => {
           Connect Wallet
         </Link>
       )}
+
+    </div>
+    <div>
+
+    {
+      transactionHistory &&(
+        <div className="flex justify-center flex-col items-center mt-8 border border-green-700">
+          <p className="text-2xl mt-2">Transaction Details are:</p>
+          <h1 className=" mt-2 ">Sender :<span className="text-blue-900 font-bold">{transactionHistory.sender}</span></h1>
+          <h1 className="mt-2">Reciver: <span className="text-blue-900 font-bold">{transactionHistory.receiver}</span></h1>
+          <p className="mt-2 ">Signature: <span className="text-blue-900 font-bold">{transactionHistory.signature}</span></p>
+           <p className="mt-2">PriceInSOl <span className="text-blue-900 font-bold text-xl">{transactionHistory.priceInSol}</span></p>      </div>
+      )
+    }
+    </div>
     </div>
   );
 };
