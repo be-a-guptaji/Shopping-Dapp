@@ -23,6 +23,12 @@ export const Navbar = ({ children }) => {
           >
             <p>Home</p>
           </NavLink>
+          <NavLink
+            to="/order"
+            className="hover:text-green-600 hover:scale-110 transition-all duration-300 p-2"
+          >
+            <p>Order</p>
+          </NavLink>
 
           <NavLink to="/cart">
             <div className="relative">

@@ -10,11 +10,10 @@ import {
 } from "@solana/wallet-adapter-react-ui";
 import "@solana/wallet-adapter-react-ui/styles.css";
 import AirdropPage from "../components/AirdropPage";
-import TransactionPage from "../components/TransactionPage";
 import SignMessage from "../components/SignMessage";
 
 function Wallet() {
-  const [section, setSection] = useState("transaction");
+  const [section, setSection] = useState("airdrop");
 
   const handleSectionChange = (section) => {
     setSection(section);
@@ -46,14 +45,6 @@ function Wallet() {
                 </button>
                 <button
                   className={`h-10 rounded-lg font-semibold w-1/4 border border-black/30 ${
-                    section === "transaction" ? "bg-[#512da8]" : "bg-[#374151]"
-                  }`}
-                  onClick={() => handleSectionChange("transaction")}
-                >
-                  Transaction
-                </button>
-                <button
-                  className={`h-10 rounded-lg font-semibold w-1/4 border border-black/30 ${
                     section === "verify" ? "bg-[#512da8]" : "bg-[#374151]"
                   }`}
                   onClick={() => handleSectionChange("verify")}
@@ -63,7 +54,6 @@ function Wallet() {
               </div>
               <div className="">
                 {section === "airdrop" && <AirdropPage />}
-                {section === "transaction" && <TransactionPage />}
                 {section === "verify" && <SignMessage />}
               </div>
             </WalletModalProvider>

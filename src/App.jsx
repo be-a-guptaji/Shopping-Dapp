@@ -5,25 +5,28 @@ import { Navbar } from "./components/Navbar";
 import { Routes, Route } from "react-router-dom";
 import Wallet from "./pages/Wallet";
 import CheckOut from "./pages/CheckOut";
+import axios from "axios";
+import Orders from "./pages/Orders";
 
 function App() {
-  const url = "https://fakestoreapi.com/products";
+  // const url = "https://fakestoreapi.com/products";
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     try {
       async function fetchData() {
         setLoading(true);
-        const urlData = await fetch(url);
-        const data = await urlData.json();
-        setData(data);
+        axios
+          .get("http://localhost:8080")
+          .then((newdata) => setData(newdata.data))
+          .catch((err) => console.log(err));
         setLoading(false);
       }
       fetchData();
     } catch (error) {
-      console.log("error while fetching data",error);
+      console.log("error while fetching data", error);
     }
-  }, []);
+  }, [data]);
   return (
     <>
       <Navbar>
@@ -32,6 +35,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/checkout" element={<CheckOut />} />
+          <Route path="/order" element={<Orders />} />
         </Routes>
       </Navbar>
     </>
