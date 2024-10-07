@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import axios from 'axios';
 import { Home } from "./pages/Home";
 import { Cart } from "./pages/Cart";
 import { Navbar } from "./components/Navbar";
@@ -7,16 +8,14 @@ import Wallet from "./pages/Wallet";
 import CheckOut from "./pages/CheckOut";
 
 function App() {
-  const url = "https://fakestoreapi.com/products";
+  // const url = "https://fakestoreapi.com/products";
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     try {
       async function fetchData() {
         setLoading(true);
-        const urlData = await fetch(url);
-        const data = await urlData.json();
-        setData(data);
+        axios.get('http://localhost:8080').then((newdata)=>setData(newdata.data)).catch((err)=>console.log(err))
         setLoading(false);
       }
       fetchData();
