@@ -5,7 +5,7 @@ const Product = require("./model/product");
 const Payment = require("./model/payment");
 const Order = require("./model/order");
 const cors = require('cors'); // Import the cors middleware
-require('dotenv').config()
+require('dotenv').config({ path: '../.env' })
 async function main(){
  await  mongoose.connect(process.env.DB_URL,
     { useNewUrlParser: true, useUnifiedTopology: true })
