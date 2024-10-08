@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from 'axios';
 import { Home } from "./pages/Home";
 import { Cart } from "./pages/Cart";
 import { Navbar } from "./components/Navbar";
@@ -16,18 +15,16 @@ function App() {
     try {
       async function fetchData() {
         setLoading(true);
-        axios
-          .get("http://localhost:8080")
-          .then((newdata) => setData(newdata.data))
-          .catch((err) => console.log(err));
-        // axios.get('http://localhost:8080').then((newdata)=>setData(newdata.data)).catch((err)=>console.log(err))
+        const res = await fetch("http://localhost:8080");
+        const data = await res.json();
+        setData(data);
         setLoading(false);
       }
       fetchData();
     } catch (error) {
       console.log("error while fetching data", error);
     }
-  }, [data]);
+  }, []);
   return (
     <>
       <Navbar>
