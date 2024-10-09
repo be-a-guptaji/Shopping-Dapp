@@ -41,7 +41,7 @@ const Orders = () => {
       <h1 className="text-3xl font-bold my-4 text-center">Your Orders</h1>
       {loading && <p>Loading orders...</p>}
       {error && <p className="text-red-500">{error}</p>}
-      {orders.length === 0 && !loading && <p>No orders found.</p>}
+      {orders.length === 0 && !loading && <p className="text-gray-500 text-center">No orders found.</p>}
       {orders.length > 0 && (
         <div className="container mx-auto p-4">
           {orders.map((order, index) => (
