@@ -30,7 +30,6 @@ app.listen(8080, (req, res) => {
 app.get("/", async (req, res) => {
   try {
     const data = await Product.find();
-    // console.log(data);
     res.json(data);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -39,7 +38,6 @@ app.get("/", async (req, res) => {
 
 app.post("/payment", async (req, res) => {
   try {
-    console.log(req.body);
     // Create and save the payment document
     const payment = await Payment.create(req.body);
 

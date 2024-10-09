@@ -27,7 +27,6 @@ const Orders = () => {
         throw new Error("Failed to fetch orders");
       }
       const data = await res.json();
-      console.log(data);
       setOrders([...data]); // Assuming your API returns an orders array
     } catch (error) {
       setError(error.message);

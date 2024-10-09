@@ -14,7 +14,7 @@ function App() {
     try {
       async function fetchData() {
         setLoading(true);
-        const res = await fetch("http://localhost:8080");
+        const res = await fetch("http://localhost:8080/");
         const data = await res.json();
         setData(data);
         setLoading(false);
@@ -27,13 +27,15 @@ function App() {
   return (
     <>
       <Navbar>
-        <Routes>
-          <Route path="/" element={<Home data={data} loading={loading} />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/wallet" element={<Wallet />} />
-          <Route path="/checkout" element={<CheckOut />} />
-          <Route path="/order" element={<Orders />} />
-        </Routes>
+        <div className="overflow-x-hidden">
+          <Routes>
+            <Route path="/" element={<Home data={data} loading={loading} />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/wallet" element={<Wallet />} />
+            <Route path="/checkout" element={<CheckOut />} />
+            <Route path="/order" element={<Orders />} />
+          </Routes>
+        </div>
       </Navbar>
     </>
   );

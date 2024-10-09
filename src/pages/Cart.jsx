@@ -49,13 +49,13 @@ export const Cart = () => {
   };
 
   return (
-    <div className="flex justify-between gap-7">
+    <div className="flex justify-center w-screen">
       {cart.length > 0 ? (
-        <div className="flex justify-center w-full gap-[200px]">
-          <div className="flex flex-col justify-between w-1/4 gap-4 my-12">
+        <div className="md:flex gap-20">
+          <div className="md:flex flex-col justify-between md:w-1/2 w-11/12 mx-auto gap-4 my-12">
             {items.map((item, index) => (
               <div className="flex" key={index}>
-                <div className="flex gap-10 py-4 border-b border-gray-300">
+                <div className="flex gap-10 py-4 border-b border-gray-300 items-center">
                   <div>
                     <img src={item.image} alt="img" className="w-[200px]" />
                   </div>
@@ -67,43 +67,46 @@ export const Cart = () => {
                           "..."
                         : "No description available."}
                     </p>
-                      <p className="text-green-500 text-xl">
-                        Price :{" "}
-                        <span className="text-green-600 font-medium">
-                          {Math.round(totalAmount * 100 * 0.007) / 100}
-                        </span>
-                        <span className="text-green-600 font-normal"> SOL</span>
-                      </p>
+                    <p className="text-green-500 text-xl">
+                      Price :{" "}
+                      <span className="text-green-600 font-medium">
+                        {Math.round(totalAmount * 100 * 0.007) / 100}
+                      </span>
+                      <span className="text-green-600 font-normal"> SOL</span>
+                    </p>
                   </div>
                   <div
                     onClick={() => removeFromCart(item._id)}
-                    className="flex mt-[80px] text-2xl justify-center items-center cursor-pointer rounded-full"
+                    className="text-2xl cursor-pointer rounded-full"
                   >
                     <MdOutlineDelete />
                   </div>
                 </div>
-                <hr />
               </div>
             ))}
           </div>
-          <div className="flex flex-col h-[80vh] justify-around">
+          <div className="md:flex flex-col h-[80vh] justify-around">
             <div className="flex flex-col mt-16 gap-2">
-              <h2 className="text-3xl text-green-600 font-bold">Your Cart</h2>
-              <h2 className="text-5xl text-green-800 font-semibold">Summary</h2>
+              <h2 className="text-3xl text-green-600 font-bold text-center">
+                Your Cart
+              </h2>
+              <h2 className="text-5xl text-green-800 font-semibold text-center">
+                Summary
+              </h2>
             </div>
             <div>
-              <p className="text-black text-xl font-bold mt-5">
+              <p className="text-black text-xl font-bold mt-5 text-center">
                 <span>Total Items: {cart.length}</span>
               </p>
-              <p className="text-black font-bold text-2xl">
+              <p className="text-black font-bold text-2xl text-center">
                 Total Amount:{" "}
                 <span className="text-green-600">
                   {Math.round(totalAmount * 100 * 0.007) / 100}
                 </span>
                 <span className="text-green-600 font-normal"> SOL</span>
               </p>
-              <Link to={"/checkout"}>
-                <button className="border border-green-600 px-16 rounded-md p-2 text-white bg-green-600 font-bold text-xl mt-6">
+              <Link to={"/checkout"} className="md:ml-0 ml-[50%]">
+                <button className="border border-green-600 px-16 rounded-md p-2 text-white bg-green-600 font-bold text-xl mt-6 md:ml-0 -translate-x-[50%] md:translate-x-0">
                   Checkout Now
                 </button>
               </Link>

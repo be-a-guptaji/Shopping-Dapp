@@ -17,9 +17,6 @@ export const CartSlice = createSlice({
             for (let i = 0; i < state.length; i++) {
                 if (state[i] !== action.payload) {
                     newArray.push(state[i]); 
-                    console.log("newArray,state")
-                } else {
-                    console.log(action.payload,state[i])
                 }
             }
             state = [...newArray];
@@ -28,13 +25,6 @@ export const CartSlice = createSlice({
                 state[i] = newArray[i];
             }
             return state.filter((item)=>item.id !== action.payload);
-            
-            // const newArray = state.reduce((acc, curr, index) => {
-            //     if (index !== action.payload) {
-            //         acc.push(curr);
-            //     }
-            //     return acc;
-            // }, []);
         },
         clear:(state)=>{
             return [];

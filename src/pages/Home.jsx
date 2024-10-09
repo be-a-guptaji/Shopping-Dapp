@@ -30,7 +30,7 @@ export const Home = ({ data, loading }) => {
           {data.map((card, index) => (
             <div
               key={card.id} // Ensure to provide a unique key
-              className="flex flex-col items-center justify-between hover:scale-110 transition duration-300 ease-in gap-3 p-4 mt-10 rounded-xl ml-5 border border-black cursor-pointer"
+              className="flex flex-col items-center justify-between md:hover:scale-110 transition duration-300 ease-in gap-3 p-4 mt-10 rounded-xl ml-5 border border-black cursor-pointer"
             >
               <div>
                 <p className="text-gray-700 font-semibold text-lg text-left truncate w-40 mt-1">
