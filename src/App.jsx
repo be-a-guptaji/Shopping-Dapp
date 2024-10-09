@@ -8,7 +8,6 @@ import CheckOut from "./pages/CheckOut";
 import Orders from "./pages/Orders";
 
 function App() {
-  // const url = "https://fakestoreapi.com/products";
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   useEffect(() => {

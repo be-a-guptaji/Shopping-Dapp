@@ -50,22 +50,22 @@ const Orders = () => {
               className="bg-white shadow-md rounded-lg p-4 mb-4 border border-gray-200"
             >
               <h5 className="text-lg font-semibold text-gray-800">
-                Product ID: {order._id}
+                Product ID: {order.product._id}
               </h5>
               <div className="flex items-center justify-between">
                 <div className="description">
-                  <p className="text-gray-600">Product Name : {order.title}</p>
-                  {/* <p className="text-gray-600">Quantity: {order.quantity}</p> */}
+                  <p className="text-gray-600">Product Name : {order.product.title}</p>
+                  <p className="text-gray-600">Quantity : {order.quantity}</p>
                   <p className="text-green-500 font-bold">
                     Price : {" "}
                     <span className="text-green-600">
-                      {Math.round(order.price * 100 * 0.007) / 100}
+                      {Math.round(order.product.price * 100 * 0.007) / 100}
                     </span>
                     <span className="text-green-600 font-normal"> SOL</span>
                   </p>
                 </div>
                 <div className=" aspect-square w-24">
-                  <img src={order.image} alt="logo" />
+                  <img src={order.product.image} alt="logo" />
                 </div>
               </div>
             </div>

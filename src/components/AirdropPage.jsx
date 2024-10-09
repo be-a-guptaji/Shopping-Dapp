@@ -29,9 +29,7 @@ const AirdropPage = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-semibold text-center my-8">
-        Airdrop
-      </h1>
+      <h1 className="text-3xl font-semibold text-center my-8">Airdrop</h1>
       <div className="flex gap-1 my-4 justify-between">
         <input
           type="text"
@@ -41,7 +39,7 @@ const AirdropPage = () => {
           className="border border-gray-600 rounded-lg h-10 px-4 w-4/6"
         />
         <button
-          className="rounded-lg h-10 px-2 bg-[#512da8] disabled:bg-gray-700"
+          className="rounded-lg h-10 px-2 bg-green-200 hover:bg-green-700 disabled:bg-slate-300"
           onClick={sendAirDropToUser}
           disabled={!amount}
         >
@@ -52,17 +50,14 @@ const AirdropPage = () => {
         <div className="text-center font-semibold">
           <p className="">
             Connected to Wallet Address :{" "}
-            <span className="text-[#512da8] ">
+            <span className="text-[#512da8]">
               {wallet.publicKey.toString()}
             </span>
           </p>
-          Your Balance :{" "}
-          <span className="text-[#512da8]">{balance} SOL</span>
+          Your Balance : <span className="text-[#512da8]">{balance} SOL</span>
         </div>
       ) : (
-        <div className="text-center font-semibold">
-          Connect your wallet
-        </div>
+        <div className="text-center font-semibold">Connect your wallet</div>
       )}
     </>
   );

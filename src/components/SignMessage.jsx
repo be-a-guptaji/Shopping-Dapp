@@ -26,9 +26,7 @@ export default function SignMessage() {
 
   return (
     <>
-      <h1 className="text-3xl font-semibold text-center my-8">
-        Sign Message
-      </h1>
+      <h1 className="text-3xl font-semibold text-center my-8">Sign Message</h1>
       <div className="flex flex-col gap-4">
         <input
           value={message}
@@ -39,14 +37,12 @@ export default function SignMessage() {
         />
         <button
           onClick={sign}
-          className="rounded-lg h-12 px-2 bg-[#512da8] disabled:bg-gray-700"
+          className="rounded-lg h-12 px-2 bg-slate-300 hover:bg-green-700 disabled:bg-green-300"
         >
           Sign Message
         </button>
         {!wallet.connected && (
-          <p className="mt-2 text-center">
-            Please connect your wallet
-          </p>
+          <p className="mt-2 text-center">Please connect your wallet</p>
         )}
       </div>
     </>
